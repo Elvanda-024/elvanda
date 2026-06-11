@@ -13,23 +13,23 @@
     <table border="1" align="center" cellspacing="0" cellpadding="10px">
         <tr>
                 <td>
-                    <a href="index.html">Home</a> 
+                    <a href="index.php">Home</a> 
                 </td>
                 <td>
-                    <a href="profil.html">Profil</a> 
+                    <a href="profil.php">Profil</a> 
                 </td>
                 <td>
-                    <a href="kontak.html">Kontak</a>
+                    <a href="kontak.php">Kontak</a>
                 </td>
                 <td>
-                    <a href="Mahasiswa.html">Data Mahasiswa</a>
+                    <a href="Mahasiswa.php">Data Mahasiswa</a>
                 </td>
                  <td>
-                    <a href="tambahandata.html">Data</a>
+                    <a href="tambahandata.php">Data</a>
                 </td>
         </tr>
     </table>
-    <form action="Mahasiswa.html" method="post"></form>
+    <form action="Mahasiswa.php" method="post"></form>
     <form>
         <table cellpadding = "5px">
     <tr>

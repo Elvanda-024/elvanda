@@ -14,19 +14,19 @@
     <table border="1" align="center" cellspacing="0" cellpadding="10px">
         <tr>
                 <td>
-                    <a href="index.html">Home</a> 
+                    <a href="index.php">Home</a> 
                 </td>
                 <td>
-                    <a href="profil.html">Profil</a> 
+                    <a href="profil.php">Profil</a> 
                 </td>
                 <td>
-                    <a href="kontak.html">Kontak</a>
+                    <a href="kontak.php">Kontak</a>
                 </td>
                 <td>
-                    <a href="Mahasiswa.html">Data Mahasiswa</a>
+                    <a href="Mahasiswa.php">Data Mahasiswa</a>
                 </td>
                  <td>
-                    <a href="tambahandata.html">Data</a>
+                    <a href="tambahandata.php">Data</a>
                 </td>
         </tr>
     </table>
@@ -35,37 +35,35 @@
     </h2>
     <table border="1" cellpadding="10px">
         <tr>
-            <th rowspan="2">No</th>
-            <th rowspan="2">Nama</th>
-            <th rowspan="2">Nim</th>
-            <th rowspan="2">Foto</th>
-            <th colspan="3">Nilai</th>
+            <th>No</th>
+            <th>Nama</th>
+            <th>Nim</th>
+            <th>jurusan</th>
+            <th>Email</th>
+            <th>N0_hp</th>
+            <th>Foto</th>
+            <th>Aksi</th>
+
             <!-- <td>Baris 1, Kolom 2<td>  -->
         </tr>
-        <tr>
-            <!-- <td>Baris 2, Kolom 1</td> -->
-            <th> UTS</th>
-            <th> UAS</th>
-            <th> TUGAS</th>
-        </tr>
-
         <tr>
             <td>1</td>
             <td>Elvanda Sri Utami</td>
             <td>13242520024</td>
+            <td>Teknologi Informasi</td>
+            <td>elvanda@gmail.com</td>
+            <td>088894629472</td>
             <td><img src="aset/img/el.jpeg" width="70px"/></td>
-            <td align="center">96</td> 
-            <td align="center">99</td> 
-            <td align="center">97</td> 
+            <td>
+                <a href="editdata.php"><button>edit</button></a>
+                <a href="deletedata.php"><button>hapus</button></a>
+            </td>
         </tr>
         <tr>
             <td>2</td>
             <td>Ilong</td>
             <td>13242520020</td>
             <td><img src="aset/img/nailong.webp" width="70px"/></td>
-            <td align="center">89</td> 
-            <td align="center">91</td> 
-            <td align="center">80</td> 
         </tr>
 
 
