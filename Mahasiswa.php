@@ -1,3 +1,17 @@
+<?php
+   // API
+  $koneksi = mysqli_connect("localhost", "root", "","ellweekly");
+
+    $query = "SELECT * FROM mahasiswa";
+    $result = mysqli_query($koneksi, $query);
+
+    // while$mhs($mhs = mysqli_fetch_assoc($result))
+    // {
+    // var_dump($mhs)
+    // }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,26 +60,34 @@
 
             <!-- <td>Baris 1, Kolom 2<td>  -->
         </tr>
-        <tr>
-            <td>1</td>
-            <td>Elvanda Sri Utami</td>
-            <td>13242520024</td>
-            <td>Teknologi Informasi</td>
-            <td>elvanda@gmail.com</td>
-            <td>088894629472</td>
-            <td><img src="aset/img/el.jpeg" width="70px"/></td>
-            <td>
-                <a href="editdata.php"><button>edit</button></a>
-                <a href="deletedata.php"><button>hapus</button></a>
-            </td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Ilong</td>
-            <td>13242520020</td>
-            <td><img src="aset/img/nailong.webp" width="70px"/></td>
-        </tr>
+        <?php
+$no = 1;
+while($mhs = mysqli_fetch_assoc($result))
+{
+?>
+<tr>
+    <td><?php echo $no++; ?></td>
+    <td><?php echo $mhs["nama"]; ?></td>
+    <td><?php echo $mhs["nim"]; ?></td>
+    <td><?php echo $mhs["jurusan"]; ?></td>
+    <td><?php echo $mhs["email"]; ?></td>
+    <td><?php echo $mhs["no_hp"]; ?></td>
+    <td>
+       <img src="aset/img/<?php echo $mhs['foto']; ?>" width="70px">
+    </td>
+    <td>
+        <a href="editdata.php?id=<?php echo $mhs['id']; ?>">
+            <button>Edit</button>
+        </a>
 
+        <a href="deletedata.php?id=<?php echo $mhs['id']; ?>">
+            <button>Hapus</button>
+        </a>
+    </td>
+</tr>
+<?php
+}
+?>
 
     </table>
  <hr>
