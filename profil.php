@@ -20,9 +20,6 @@
                 <td>
                     <a href="Mahasiswa.php">Data Mahasiswa</a>
                 </td>
-                 <td>
-                    <a href="tambahandata.php">Data</a>
-                </td>
         </tr>
     </table>
 

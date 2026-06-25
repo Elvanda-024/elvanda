@@ -1,3 +1,48 @@
+<?php
+require 'fungsi.php';
+
+if(isset($_POST['tambah']))
+{
+    $nama = $_POST['nama'];
+    $nim = $_POST['nim'];
+    $jurusan = $_POST['jurusan'];
+    $email = $_POST['email'];
+    $no_hp = $_POST['no_hp'];
+
+    $foto = $_FILES['foto']['name'];
+    $tmp = $_FILES['foto']['tmp_name'];
+
+    move_uploaded_file($tmp, "aset/img/" . $foto);
+
+    global $koneksi;
+
+    $query = "INSERT INTO mahasiswa
+              (nama,nim,jurusan,email,no_hp,foto)
+              VALUES
+              ('$nama','$nim','$jurusan','$email','$no_hp','$foto')";
+
+    mysqli_query($koneksi, $query);
+
+    if(mysqli_affected_rows($koneksi) > 0)
+    {
+        echo "
+        <script>
+            alert('Data berhasil ditambahkan');
+            window.location.href='Mahasiswa.php';
+        </script>
+        ";
+    }
+    else
+    {
+        echo "
+        <script>
+            alert('Data gagal ditambahkan');
+        </script>
+        ";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,166 +52,78 @@
     <link rel="stylesheet" href="aset/style.css">
 </head>
 <body>
-    <h2>
-        Tambah Data Mahasiswa
-    </h2>
-    <table border="1" align="center" cellspacing="0" cellpadding="10px">
-        <tr>
-                <td>
-                    <a href="index.php">Home</a> 
-                </td>
-                <td>
-                    <a href="profil.php">Profil</a> 
-                </td>
-                <td>
-                    <a href="kontak.php">Kontak</a>
-                </td>
-                <td>
-                    <a href="Mahasiswa.php">Data Mahasiswa</a>
-                </td>
-                 <td>
-                    <a href="tambahandata.php">Data</a>
-                </td>
-        </tr>
-    </table>
-    <form action="Mahasiswa.php" method="post"></form>
-    <form>
-        <table cellpadding = "5px">
+
+<h2>Tambah Data Mahasiswa</h2>
+
+<form action="" method="post" enctype="multipart/form-data">
+
+<table cellpadding="5">
+
     <tr>
-        <td><label for="nama">Nama</label></td>
+        <td>Nama</td>
         <td>:</td>
-        <td><input type="text" id="nama" name="nama" required /></td>
-    </tr>
-    <tr>
-        <td><label for="NIM">NIM</label></td>
-        <td>:</td>
-        <td><input type="text" id="NIM" name="NIM" /></td>
-    </tr>
-    <tr>
-        <td><label for="Foto">Nama</label></td>
-        <td>:</td>
-        <td><input type="file" id="Foto" name="Foto" /></td>
-    </tr>
-    <tr>
-        <td><label for="UTS">UTS</label></td>
-        <td>:</td>
-        <td><input type="text" id="UTS" name="UTS" /></td>
-    </tr>
-    <tr>
-        <td><label for="UAS">UAS</label></td>
-        <td>:</td>
-        <td><input type="text" id="UAS" name="UAS" /></td>
-    </tr>
-    <tr>
-        <td><label for="Tugas">Tugas</label></td>
-        <td>:</td>
-        <td><input type="text" id="Tugas" name="Tugas" /></td>
-    </tr>
-    <tr>
-        <td colspan="3">
-            <button type="submit"name="submit">Tambah Data</button>
+        <td>
+            <input type="text" name="nama" required>
         </td>
     </tr>
-    </table>
-    </form>
 
-    <form>
-    <table>
-    <br>
-    <hr>
     <tr>
-        <td><label for="nama">Nama</label></td>
+        <td>NIM</td>
         <td>:</td>
-        <td><input type="text" id="nama" name="nama" required /></td>
-    </tr>
-    <tr>
-        <td><label for="nama">Nim</label></td>
-        <td>:</td>
-        <td><input type="number" id="Nim" name="Nim" /></td>
-    </tr>
-     <tr>
-        <td><label for="nama">Password</label></td>
-        <td>:</td>
-        <td><input type="password" id="password" name="password" /></td>
-    </tr>
-     <tr>
-        <td><label for="nama">Email</label></td>
-        <td>:</td>
-        <td><input type="email" id="Email" name="Email" /></td>
-    </tr>
-     <tr>
-        <td><label for="nama">No Hp</label></td>
-        <td>:</td>
-        <td><input type="tel" id="No HP" name="No HP" /></td>
-    </tr>
-     <tr>
-        <td><label for="nama">Website Pribadi</label></td>
-        <td>:</td>
-        <td><input type="url" id="Website Pribadi" name="Website Pribadi" /></td>
-    </tr>
-     <tr>
-        <td><label for="nama">Tanggal Lahir</label></td>
-        <td>:</td>
-        <td><input type="date" id="Tanggal Lahir" name="Tanggal Lahir" /></td>
-    </tr>
-     <tr>
-        <td><label for="nama">Warna favorit</label></td>
-        <td>:</td>
-        <td><input type="color" id="Warna Favorit" name="Warna Favorit" /></td>
-    </tr>
-     <tr>
-        <td><label for="nama">Tingkat Kepuasan</label></td>
-        <td>:</td>
-        <td><input type="range" id="Tingkat Kepuasan" name="Tingkat Kepuasan" /></td>
-    </tr>
-     <tr>
-        <td><label>Jenis Kelamin</label></td>
-        <td>:</td>
-    <td>
-        <input type="radio" id="laki" name="jenis kelamin" value="Laki-laki">
-        <label for="laki">Laki-laki</label>
-
-        <input type="radio" id="perempuan" name="jenis kelamin" value="Perempuan">
-        <label for="perempuan">Perempuan</label>
-    </td>
-    </tr>
-    <tr>
-    <td><label>Hobi</label></td>
-    <td>:</td>
-    <td>
-        <input type="checkbox" name="hobi[]" value="membaca"> Membaca <br>
-        <input type="checkbox" name="hobi[]" value="olahraga"> Olahraga <br>
-        <input type="checkbox" name="hobi[]" value="musik"> Musik
-    </td>
-    </tr>
-     <tr>
-        <td><label for="nama">Upload Foto</label></td>
-        <td>:</td>
-        <td><input type="file" id="Upload Foto" name="Upload Foto" /></td>
-    </tr>
-     <tr>
-        <td><label for="nama">Alamat</label></td>
-        <td>:</td>
-        <td><input type="textarea" id="Alamat" name="Alamat" /></td>
-    </tr>
-     <tr>
-    <td><label for="jurusan">Jurusan</label></td>
-    <td>:</td>
-    <td>
-        <select name="jurusan" id="jurusan">
-            <option value=""> Pilih Jurusan </option>
-            <option value="rpl">RPL (Rekayasa Perangkat Lunak)</option>
-            <option value="tkj">TKJ (Teknik Komputer dan Jaringan)</option>
-            <option value="mm">Multimedia</option>
-        </select>
-    </td>
-    </tr>
-    <tr>
-        <td colspan="3">
-            <button type="submit"name="submit">Tambah Data</button>
+        <td>
+            <input type="text" name="nim" required>
         </td>
     </tr>
-    </table>
-    </form> 
+
+    <tr>
+        <td>Jurusan</td>
+        <td>:</td>
+        <td>
+            <input type="text" name="jurusan" required>
+        </td>
+    </tr>
+
+    <tr>
+        <td>Email</td>
+        <td>:</td>
+        <td>
+            <input type="email" name="email" required>
+        </td>
+    </tr>
+
+    <tr>
+        <td>No HP</td>
+        <td>:</td>
+        <td>
+            <input type="text" name="no_hp" required>
+        </td>
+    </tr>
+
+    <tr>
+        <td>Foto</td>
+        <td>:</td>
+        <td>
+            <input type="file" name="foto" required>
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="3">
+            <button type="submit" name="tambah">
+                Simpan Data
+            </button>
+
+            <a href="Mahasiswa.php">
+                <button type="button">
+                    Kembali
+                </button>
+            </a>
+        </td>
+    </tr>
+
+</table>
+
+</form>
+
 </body>
 </html>
